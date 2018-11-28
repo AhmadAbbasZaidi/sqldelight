@@ -1,9 +1,9 @@
+Change description on github to "Generates typesafe kotlin APIs from SQL"
+
 SQLDelight
 ==========
 
-SQLDelight generates Java models from your SQL `CREATE TABLE` statements. These models give you a
-typesafe API to read & write the rows of your tables. It helps you to keep your SQL statements
-together, organized, and easy to access from Java.
+SQLDelight generates typesafe APIs from your SQL statements. It compile-time verifies your schema, statements, and migrations and provides IDE features like autocomplete and refactoring which make writing and maintaining SQL simple. SQLDelight currently supports the SQLite dialect and there are supported SQLite drivers on Android, JVM and iOS.
 
 Example
 -------
@@ -13,11 +13,20 @@ To use SQLDelight, put your SQL statements in a `.sq` file, like
 
 ```sql
 CREATE TABLE hockey_player (
-  _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   player_number INTEGER NOT NULL,
   name TEXT NOT NULL
 );
 
+INSERT INTO hockey_player (player_number, name)
+VALUES (15, 'Ryan Getzlaf');
+```
+
+From this SQLDelight will generate a `QueryWrapper` kotlin class with a companion `Schema` class 
+
+///////////// EDITING BELOW 
+
+```sql
 -- Further SQL statements are proceeded by an identifier.
 selectAll:
 SELECT *
